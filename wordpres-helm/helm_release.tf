@@ -12,15 +12,26 @@ provider "helm" {
 
 resource "helm_release" "wordpress" {
   name       = "wordpress"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "wordpress"
-
-  values = [
-    file("${path.module}/wordpress-values.yaml")
-  ]
-
-  set_sensitive {
-    name  = 
-    value = 
-  }
+  chart      = "${abspath(path.root)}/wordpress-chart"
 }
+
+  set {
+    name  = "WORDPRESS_DB_DATABASE"
+    value = aws_db_instance.rds.name
+  }
+
+  set {
+    name  = "WORDPRESS_DB_USER"
+    value = aws_db_instance.rds.master_username
+  }
+
+  set {
+    name  = "WORDPRESS_DB_PASSWORD"
+    value = aws_db_instance.rds.master_user_password
+  }
+
+  set {
+    name  = "WORDPRESS_DB_HOST"
+    value = aws_db_instance.rds.endpoint.address
+  }
+
