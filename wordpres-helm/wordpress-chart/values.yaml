@@ -12,3 +12,8 @@ service:
  type: LoadBalancer
  port: 80
 
+resources.requests.cpu: "2500m"
+resources.requests.memory: "100Mi"
+resources.limits.cpu: "500m"
+resources.limits.memory: "512Mi"
+
