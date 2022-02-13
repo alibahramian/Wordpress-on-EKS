@@ -3,6 +3,7 @@ Deploy a wordpress on top of EKS on AWS using terraform
 
 **Configure AWS CLI**
 
+In order for Terraform to run operations on your behalf, you must install and configure the AWS CLI tool. 
 
 ```dotnetcli
 $ aws configure
@@ -45,7 +46,9 @@ This process should take approximately 10 minutes. Upon successful application, 
 
 Run the following command to retrieve the access credentials for your cluster and automatically configure `kubectl`.
 
-```$ aws eks --region $(terraform output region) update-kubeconfig --name $(terraform output cluster_name)```
+```
+$ aws eks --region $(terraform output region) update-kubeconfig --name $(terraform output cluster_name)
+```
 
 
 **Provision RDS Instance**
@@ -57,7 +60,7 @@ $ terraform init
 $ terraform apply
 ```
 
-**Deploy worpress using helm**
+**Deploy wordpress using helm**
 
 In this step we use terraform and helm-release to deploy a wordpress on top of the EKS cluster.
 change directory to wordpress-helm and deploy wordpress
@@ -66,6 +69,7 @@ $ cd wordpress-helm
 ```
 
 required values have been set in helm chart in case of needed it can be changed in`wordpress-chart/values.yaml`
+
 RDS intance variable that needs to be use by wordpress app will be passed by helm-release.
 
 ```
