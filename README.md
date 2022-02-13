@@ -19,7 +19,7 @@ Here, you will find 5 files used to provision a VPC, security groups, and an EKS
 
 1. vpc.tf - provisions a VPC, subnets, and availability zones using the AWS VPC Module. A new VPC is created for this tutorial so it doesn't impact your existing cloud environment and resources.
 2. security-groups.tf - provisions the security groups used by the EKS cluster.
-3. eks-cluster.tf - provisions all the resources (AutoScaling Groups, etc...) required to set up an EKS cluster in the private subnets and bastion servers to access the cluster using the AWS EKS Module.
+3. eks-cluster.tf - provisions all the resources (AutoScaling Groups, etc) required to set up an EKS cluster in the private subnets and bastion servers to access the cluster using the AWS EKS Module.
 4. outputs.tf - defines the output configuration.
 5. versions.tf - sets the Terraform version to at least 0.12. It also sets versions for the providers used in this sample.
 
@@ -62,7 +62,7 @@ $ terraform apply
 
 **Deploy wordpress using helm**
 
-In this step we use terraform and helm-release to deploy a wordpress on top of the EKS cluster.
+In this step, we use terraform and helm-release to deploy a wordpress on top of the EKS cluster.
 change directory to wordpress-helm and deploy wordpress
 ```
 $ cd wordpress-helm
@@ -70,10 +70,10 @@ $ cd wordpress-helm
 
 required values have been set in helm chart in case of needed it can be changed in`wordpress-chart/values.yaml`
 
-RDS intance variable that needs to be use by wordpress app will be passed by helm-release.
+RDS instance variable that needs to be used by wordpress app will be passed by helm-release.
 
 ```
 $ terraform init
 $ terraform apply
 ```
-The worpress application will be accessible by loadbalancer ip address that shown in `outputs.tf`
+The wordpress application will be accessible by loadbalancer ip address that show in `outputs.tf`
